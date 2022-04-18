@@ -1,0 +1,32 @@
+import sqlite3
+
+conn = sqlite3.connect("bank_accs.db")
+
+c = conn.cursor()
+
+c.execute("""CREATE TABLE bank_accs (
+         account_name text,
+         amount real 
+    )""")
+
+rows = [
+  ['Natwest Current a/c', '0.00'],
+  ['Natwest Bills a/c', '0.00'],
+  ['Natwest Savings 1 a/c', '0.00'],
+  ['Natwest Savings 2 a/c', '0.00'],
+  ['Co op Current 1 a/c', '0.00'],
+  ['Co op Current 2 a/c', '0.00'],
+  ['Co op Savings a/c', '0.00']
+]
+
+c.executemany("INSERT INTO bank_accs VALUES(?,?)", rows)
+
+c.execute("SELECT rowid, *  FROM bank_accs")
+
+items = c.fetchall()
+for item in items:
+  print(item)
+
+conn.commit()
+
+conn.close()

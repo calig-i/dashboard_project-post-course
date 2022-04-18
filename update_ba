@@ -1,0 +1,44 @@
+def update_ba():
+  # import modules
+  import sqlite3
+  # user input
+  
+  #add in functionality to catch erroneous input
+  
+  current_acc = float(input("Natwest Current A/C: "))
+  bills_acc = float(input("Natwest Bills A/C: "))
+  nw_sav1 = float(input("Natwest Savings 1 A/C: "))
+  nw_sav2 = float(input("Natwest Savings 2 A/C: "))
+  coop_curr1 = float(input("Co-op Current 1 A/C: "))
+  coop_curr2 = float(input("Co-op Current 2 A/C: "))
+  coop_sav = float(input("Co-op Savings A/C: "))
+
+  # update database
+  conn = sqlite3.connect("databases/bank_accs.db")
+  c = conn.cursor() 
+
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 1" 
+  c.execute(sql, (current_acc,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 2"
+  c.execute(sql, (bills_acc,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 3"
+  c.execute(sql, (nw_sav1,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 4"
+  c.execute(sql, (nw_sav2,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 5"
+  c.execute(sql, (coop_curr1,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 6"
+  c.execute(sql, (coop_curr2,))
+  sql = "UPDATE bank_accs SET amount = ? WHERE rowid = 7"
+  c.execute(sql, (coop_sav,))
+
+  # query database
+  c.execute("SELECT rowid, * FROM bank_accs")
+  items = c.fetchall()
+  for item in items:
+    print(item)
+  # commit and close
+  conn.commit()
+  conn.close()
+
+#update_ba() - #unhash when above needs calling
