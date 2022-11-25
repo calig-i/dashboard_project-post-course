@@ -1,8 +1,5 @@
 # Cashboard Project
 
-# re-create databases for bank accounts - DONE
-# import update bank balance function - DONE
-
 #---------TKinter------------------
 
 # import modules
@@ -56,7 +53,6 @@ def db_bal():
     c.execute("SELECT amount FROM bank_accs WHERE rowid=4")
     amounts = c.fetchall()
     return(amounts)
-
   nws2Label = Label(root, text=nws2())
   nws2Label.grid(row=6, column=2)
 
@@ -67,7 +63,6 @@ def db_bal():
     c.execute("SELECT amount FROM bank_accs WHERE rowid=5")
     amounts = c.fetchall()
     return(amounts)
-
   coopc1Label = Label(root, text=coopc1())
   coopc1Label.grid(row=7, column=2)
 
@@ -78,7 +73,6 @@ def db_bal():
     c.execute("SELECT amount FROM bank_accs WHERE rowid=6")
     amounts = c.fetchall()
     return(amounts)
-
   coopc2Label = Label(root, text=coopc2())
   coopc2Label.grid(row=8, column=2)
 
@@ -89,7 +83,6 @@ def db_bal():
     c.execute("SELECT amount FROM bank_accs WHERE rowid=7")
     amounts = c.fetchall()
     return(amounts)
-
   coopsvLabel = Label(root, text=coopsv())
   coopsvLabel.grid(row=9, column=2)
 
@@ -226,6 +219,7 @@ to do:
 catch erroneous input - gave try and except a go, not sure how to make it work as a function
 cast to float
 format to 2 decimal places 
+format to accept negative balances
 
 https://stackabuse.com/format-number-as-currency-string-in-python/
 
